@@ -39,7 +39,7 @@ Project reference: private Go Telegram bot repository (Go 1.22, Chi, pgx, AWS SD
 ### PHP (platform tooling and API services)
 
 Practical PHP backend work across operational products:
-- **GitOps Traefik Panel** (private repository): layered architecture (`Action` + `Service` + `DTO`), DNS/WHOIS validation, GitHub PR automation, deploy-status polling, CSRF/rate-limit/remember-token security controls;
+- **[GitOps Traefik Panel](https://github.com/Haeniken/gitops-traefik-panel)**: layered architecture (`Action` + `Service` + `DTO`), DNS/WHOIS validation, GitHub PR automation, deploy-status polling, CSRF/rate-limit/remember-token security controls;
 - **Internal Static Asset Storage API** (private project): upload/copy/delete API for static files, request-id correlation, path normalization/validation, hardlink dedup by MD5, MySQL-backed metadata, Dockerized runtime with hardening.
 
 ## Selected Architecture Decisions
