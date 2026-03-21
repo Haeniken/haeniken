@@ -68,13 +68,13 @@ Level order used in this matrix: `Middle -> Upper-Intermediate -> Advanced`.
 
 ## Experience Snapshot
 
-- **Bank Saint Petersburg** — DevOps Engineer  
+- ⭐ **Bank Saint Petersburg** — DevOps Engineer  
   Reliability and operational support for distributed internet banking systems and microservices.
-- **TIPPO Cloud Service** — DevOps / DevSecOps / SRE Engineer  
+- ⭐ **TIPPO Cloud Service** — DevOps / DevSecOps / SRE Engineer  
   Single infrastructure owner for SaaS workloads (500+ client resources; hybrid VDS + bare metal).
-- **StormWall** — Lead Engineer  
+- ⭐ **StormWall** — Lead Engineer  
   Cybersecurity-focused infrastructure operations, including WAF engineering and L3-L7 (OSI) traffic filtering/tuning, plus troubleshooting and automation.
-- **ElGracia** — Linux System Administrator / Project Curator  
+- ⭐ **ElGracia** — Linux System Administrator / Project Curator  
   Led a high-load TrinityCore project as Linux admin and server curator: team coordination, C++ core patching, MySQL/InnoDB + Galera tuning, and production security/observability (ModSecurity, SEnginx, Grafana, Graylog).
 
 ## Recent Hands-on Themes
