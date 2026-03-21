@@ -86,7 +86,7 @@ Level order used in this matrix: `Middle -> Upper-Intermediate -> Advanced`.
 - MySQL incident diagnostics: connection pressure, timeout patterns, logging enablement, and recovery routines;
 - Nginx/Traefik troubleshooting: upstream timeouts, access/error log strategy, and request tracing;
 - security operations checks: Fail2ban verification, Lynis-based review, Linux hardening actions;
-- traffic/source investigations: server-status probing and suspicious IP request origin analysis;
+- traffic/source investigations: analysis of requests, response codes, suspicious IP requests and identification of legitimate/malicious patterns;
 - firewall/network operations: iptables rule review, portspoof compilation, ingress behavior checks;
 - monitoring and observability improvements with Zabbix/Grafana-oriented metrics and log workflows;
 - architecture and reliability reviews for multi-server/container environments;
