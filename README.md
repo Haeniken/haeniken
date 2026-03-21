@@ -35,10 +35,6 @@ My focus is measurable impact: uptime, incident reduction, delivery speed, and i
 - security hardening integrated into regular delivery flow;
 - practical architecture decisions balancing risk, speed, and maintainability.
 
-## Upcoming Initiative
-
-- VLESS platform architecture with XHTTP transport, fine tuning, and planned horizontal scaling in Yandex Cloud.
-
 ## Technical Profile
 
 - English (full technical): [README.tech.md](./README.tech.md)
