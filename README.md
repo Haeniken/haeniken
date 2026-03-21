@@ -37,7 +37,7 @@ My focus is measurable impact: uptime, incident reduction, delivery speed, and i
 
 ## Technical Profile
 
-- English (full technical): [README.tech.md](./README.tech.md)
+- Full technical: [README.tech.md](./README.tech.md)
 
 ## Location
 
