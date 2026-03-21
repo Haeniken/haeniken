@@ -1,4 +1,4 @@
-<p align="right"><b>Русская техническая версия</b> | <a href="./README.tech.md">English technical version</a> | <a href="./README.ru.md">Main Hiring README (RU)</a></p>
+<p align="right"><b>Русская техническая версия</b> | <a href="./README.ru.md">Краткий README</a></p>
 
 <h1 align="center">Sergey Haeniken</h1>
 <p align="center"><b>DevOps / DevSecOps / SRE Engineer</b> · Инженер инфраструктуры и серверной разработки (Go/PHP) · Надежность и автоматизация</p>
