@@ -84,7 +84,7 @@ Level order used in this matrix: `Middle -> Upper-Intermediate -> Advanced`.
 - internal static file storage API hardening: internal API contracts, logging, smoke tests, and runtime fixes;
 - ZFS/ARC tuning analysis across multiple storage hosts and capacity planning recommendations;
 - MySQL incident diagnostics: connection pressure, timeout patterns, logging enablement, and recovery routines;
-- Nginx/Traefik troubleshooting: upstream timeouts, access/error log strategy, and request tracing;
+- Nginx/Traefik/Apache troubleshooting: upstream timeouts, access/error log strategy, and request tracing;
 - security operations checks: Fail2ban verification, Lynis-based review, Linux hardening actions;
 - traffic/source investigations: analysis of requests, response codes, suspicious IP requests and identification of legitimate/malicious patterns;
 - firewall/network operations: iptables rule review, portspoof compilation, ingress behavior checks;
