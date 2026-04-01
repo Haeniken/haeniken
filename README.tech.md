@@ -36,6 +36,10 @@ Production-oriented Go development in a multi-service Telegram product:
 
 Project reference: private Go Telegram bot repository (Go 1.22, Chi, pgx, AWS SDK v2).
 
+Recent public/private Go projects:
+- **[vk_chat_digest_bot](https://github.com/Haeniken/vk_chat_digest_bot)**: VK bot on Go with PostgreSQL and LLM-based chat summaries, per-chat state, batch-triggered digests, and production-minded long-poll processing.
+- **bot-vpn** (private): Telegram VPN sales bot on Go with PostgreSQL, 3x-ui and YooMoney integrations, worker-based lifecycle handling, admin flows, and production operations focus.
+
 ### PHP (platform tooling and API services)
 
 Practical PHP backend work across operational products:
@@ -79,18 +83,14 @@ Level order used in this matrix: `Middle -> Upper-Intermediate -> Advanced`.
 
 ## Recent Hands-on Themes
 
-- GitOps Traefik panel architecture and workflow design (PR validation, auto-merge, deploy wrappers);
-- Go Telegram bot architecture work: service split, workers, exports, and product analytics flows;
-- internal static file storage API hardening: internal API contracts, logging, smoke tests, and runtime fixes;
-- ZFS/ARC tuning analysis across multiple storage hosts and capacity planning recommendations;
-- MySQL incident diagnostics: connection pressure, timeout patterns, logging enablement, and recovery routines;
-- Nginx/Traefik/Apache troubleshooting: upstream timeouts, access/error log strategy, and request tracing;
-- security operations checks: Fail2ban verification, Lynis-based review, Linux hardening actions;
-- traffic/source investigations: analysis of requests, response codes, suspicious IP requests and identification of legitimate/malicious patterns;
-- firewall/network operations: iptables rule review, portspoof compilation, ingress behavior checks;
-- monitoring and observability improvements with Zabbix/Grafana-oriented metrics and log workflows;
-- architecture and reliability reviews for multi-server/container environments;
-- VLESS architecture with XHTTP transport, fine tuning, and planned horizontal scaling in Yandex Cloud.
+- production security audit of a Go Telegram VPN bot: secrets exposure, fail-open webhook auth, idempotency gaps, DoS-related timeout/body-limit issues, and runtime hardening;
+- production rollout of a Go VK bot: Docker Compose + PostgreSQL, VK long poll, LLM integration, per-chat batching, advisory-lock based publish flow, and retry/rate-limit handling;
+- live incident-style debugging of external integrations: permission-related event delivery failures, long-poll/session issues, upstream timeout tuning, and transport error recovery;
+- safe public release prep for an active service: secret scrub, `.env`/logs/data exclusion, config cleanup, and isolated GitHub repo bootstrap from a server-side copy;
+- GitOps delivery design for Traefik-based infrastructure: PR validation, auto-merge, and deploy wrappers;
+- MySQL and web-tier troubleshooting: connection pressure, timeout patterns, upstream failures, and request tracing;
+- Linux / network / security operations: iptables review, Fail2ban and Lynis checks, traffic-source investigation, and host hardening;
+- observability and capacity work: ZFS/ARC analysis, Grafana/Zabbix-oriented telemetry, and multi-server reliability reviews.
 
 ---
 
