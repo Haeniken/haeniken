@@ -31,6 +31,7 @@ Production-oriented Go development in a multi-service Telegram product:
 - service split into `bot-api`, `app-core`, `worker-scheduler`, `worker-notify`, `worker-export`;
 - internal API boundaries with service-token protection;
 - idempotency patterns (duplicate update protection via `processed_updates`, conflict-safe inserts);
+- reliable cross-system operations with transactional outbox/saga workflows, retries, and reconciliation;
 - async export pipeline (`csv/json/ics`) with S3 upload and expiring download links;
 - analytics and referral flows integrated into domain logic.
 
@@ -58,13 +59,13 @@ Practical PHP backend work across operational products:
 
 | Domain | Stack | Level |
 |---|---|---|
-| Linux & Networking | Linux, sysctl, iptables, WireGuard | Advanced |
+| Linux & Networking | Linux, sysctl, iptables, WireGuard, IPsec, BGP/FRR/BFD, CoreDNS | Advanced |
 | Containers & Orchestration | Docker, Docker Swarm, Compose, Traefik, Nginx | Advanced |
 | CI/CD & GitOps | GitLab CI, GitHub Actions, PR-driven workflows | Advanced |
 | Go Development | Go, services/workers, internal APIs | Middle |
 | PHP Development | PHP, platform tooling, API services | Middle |
 | Backend Development | Python, REST APIs | Advanced |
-| Databases | MySQL/MariaDB, PostgreSQL, Oracle DB | Middle |
+| Databases | MySQL/MariaDB, PostgreSQL/TimescaleDB, Oracle DB | Middle |
 | Observability | Zabbix, Grafana, Prometheus, ELK/Kibana | Advanced |
 | Security / DevSecOps | CrowdSec, OpenVAS, Trivy, Lynis, rkhunter, hardening | Upper-Intermediate |
 
@@ -83,14 +84,15 @@ Level order used in this matrix: `Middle -> Upper-Intermediate -> Advanced`.
 
 ## Recent Hands-on Themes
 
+- built CI/CD pipelines in GitLab CI and GitHub Actions covering linting, tests, Docker/Compose/YAML validation, Trivy scanning, image builds, database migrations, controlled production rollout, and rollback;
+- designed and rolled out a seven-node encrypted mesh with stable internal addressing, CoreDNS, WireGuard as the primary transport, and automatic IPsec failover through BGP/FRR/BFD; documented node lifecycle, recovery, and troubleshooting procedures;
+- improved a production Go VPN bot's consistency across PostgreSQL, payment flows, and 3x-ui by introducing transactional outbox/saga processing, idempotent workers, retries, reconciliation, and operational alerts;
+- tuned a production Zabbix + PostgreSQL/TimescaleDB stack and investigated storage latency across ZFS, software RAID, and physical disks using workload metrics and extended SMART diagnostics;
+- performed safe production service and data migrations with staged rsync cutovers, traffic verification, resource limits, and host/container log rotation;
 - production security audit of a Go Telegram VPN bot: secrets exposure, fail-open webhook auth, idempotency gaps, DoS-related timeout/body-limit issues, and runtime hardening;
 - production rollout of a Go VK bot: Docker Compose + PostgreSQL, VK long poll, LLM integration, per-chat batching, advisory-lock based publish flow, and retry/rate-limit handling;
-- live incident-style debugging of external integrations: permission-related event delivery failures, long-poll/session issues, upstream timeout tuning, and transport error recovery;
 - safe public release prep for an active service: secret scrub, `.env`/logs/data exclusion, config cleanup, and isolated GitHub repo bootstrap from a server-side copy;
-- GitOps delivery design for Traefik-based infrastructure: PR validation, auto-merge, and deploy wrappers;
-- MySQL and web-tier troubleshooting: connection pressure, timeout patterns, upstream failures, and request tracing;
-- Linux / network / security operations: iptables review, Fail2ban and Lynis checks, traffic-source investigation, and host hardening;
-- observability and capacity work: ZFS/ARC analysis, Grafana/Zabbix-oriented telemetry, and multi-server reliability reviews.
+- GitOps delivery design for Traefik-based infrastructure: PR validation, auto-merge, and deploy wrappers.
 
 ---
 
