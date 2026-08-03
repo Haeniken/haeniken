@@ -72,12 +72,21 @@ In [GitOps Traefik Panel](https://github.com/Haeniken/gitops-traefik-panel), an 
 
 In a private control panel, I separated payment recording from applying desired state across several external nodes. PostgreSQL stores balances, the operation ledger, jobs, leases and generations; network calls run after the database transaction has committed. A repeated notification cannot credit the balance twice, while an unavailable node is retried and later reconciled against recorded state. Incoming notifications use HMAC verification, opaque labels and a separate audit log.
 
+I also reviewed the boundary between PostgreSQL and 3x-ui. Provisioning and renewal now run outside database transactions as jobs with leases, operation generations and safe retries. Background reconciliation restores the recorded state on external nodes, while conflict recovery prevents an operation from remaining stuck indefinitely. Payment notifications are verified with HMAC-SHA256, and duplicate delivery and conflict paths are covered by tests.
+
 [Engineering note on the internal control panel](https://haeniken.com/en/articles/rabbithole-vpn/)
 
-### Observability and architecture decisions
+### Architecture review across seven nodes
+
+Before selecting a common orchestration layer, I reconciled the live configuration of seven hosts. The environment consisted of separate Docker Compose installations: state was tied to local ZFS pools and directories, RabbitMQ queues were split across nodes, and parts of observability and backup depended on one server. Versions, image build practices and network rules also differed.
+
+The resulting target model uses immutable images built in CI and pulled from a registry, explicit host roles, a separate management network, and state that is either replicated or removed from compute services. It replaces independent brokers with a shared resilient queue and establishes one baseline for health checks, logging, secrets and resource limits.
+
+I did not move the whole environment into a stretched Docker Swarm. Local state and different failure domains would have turned the cluster into a shared source of risk. I kept only the compute service as a candidate, after removing local state, consolidating the queue and verifying multi-replica idempotency.
+
+### Monitoring performance
 
 - **Zabbix and PostgreSQL/TimescaleDB performance.** I traced latency across physical disks, ZFS, system RAID, PostgreSQL and container limits. Logically separate workloads shared the same HDDs: `iowait` reached 86–90% and one disk showed 300–440 ms latency. For the current environment I reduced background collection and tuned PostgreSQL and web resources; the long-term fix was defined as dedicated SSD/NVMe storage for PostgreSQL and WAL rather than more tuning on the shared HDD set.
-- **Checking whether Docker Swarm was the right next step.** After reconciling seven active nodes, I did not move the whole environment into a stretched cluster. Most services depended on local ZFS pools, bind mounts, databases and separate RabbitMQ queues, while a common private network did not yet exist. I limited the future candidate to the compute service, with local state removal, one queue and multi-replica idempotency as prerequisites.
 
 ## Tools
 

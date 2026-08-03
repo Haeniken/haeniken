@@ -37,6 +37,7 @@
 
 ## Технический профиль
 
+- Сайт: [haeniken.com](https://haeniken.com/)
 - Полная техническая версия: [README.tech.ru.md](./README.tech.ru.md)
 
 ## Локация

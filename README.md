@@ -37,6 +37,7 @@ My focus is measurable impact: uptime, incident reduction, delivery speed, and i
 
 ## Technical Profile
 
+- Website: [haeniken.com](https://haeniken.com/)
 - Full technical: [README.tech.md](./README.tech.md)
 
 ## Location
