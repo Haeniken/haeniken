@@ -1,99 +1,105 @@
 <p align="right"><b>English Technical</b> | <a href="./README.md">Main Hiring README</a></p>
 
 <h1 align="center">Sergey Haeniken</h1>
-<p align="center"><b>DevOps / DevSecOps / SRE Engineer</b> · Backend & Infrastructure Engineer (Go/PHP) · Reliability & Automation</p>
+<p align="center"><b>DevOps / DevSecOps / SRE Engineer</b> · Linux Infrastructure · Reliability · Scientific Software</p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Experience-11%2B%20years-1F8A70?style=for-the-badge" alt="11+ years" />
-  <img src="https://img.shields.io/badge/Focus-DevOps%20%7C%20DevSecOps%20%7C%20SRE-0A66C2?style=for-the-badge" alt="Focus" />
-  <img src="https://img.shields.io/badge/Backend-Go%20%26%20PHP-3D5A80?style=for-the-badge" alt="Backend" />
+  <img src="https://img.shields.io/badge/Experience-11%2B%20years-1F8A70?style=for-the-badge" alt="11+ years of experience" />
+  <img src="https://img.shields.io/badge/Focus-DevOps%20%7C%20DevSecOps%20%7C%20SRE-0A66C2?style=for-the-badge" alt="DevOps, DevSecOps, SRE" />
+  <img src="https://img.shields.io/badge/Environments-Linux%20%7C%20Kubernetes%20%7C%20Docker-3D5A80?style=for-the-badge" alt="Linux, Kubernetes, Docker" />
 </p>
 
-## About
+## Profile
 
-I am a hands-on DevOps/DevSecOps/SRE engineer with 11+ years in Linux infrastructure, high-load operations, and production troubleshooting.
+I have worked with Linux infrastructure for more than 11 years. My work covers distributed-service operations, releases, observability, networking, storage, incident analysis and security controls.
 
-I combine operations ownership with backend development experience, especially where platform reliability and product logic meet.
+I write code when an existing tool does not cover the task: diagnostics, configuration generation, state reconciliation, safe retries and scientific-data processing. I treat this code as part of DevOps/SRE work rather than as a separate backend specialisation.
 
-## What I Do
+## Experience
 
-- run and improve production infrastructure with strong SLA/SLO focus;
-- automate incident detection, mitigation, and operational playbooks;
-- design CI/CD and GitOps flows for safer deployments;
-- build observability (metrics, logs, alerting) with actionable signals;
-- apply security hardening and practical DevSecOps controls.
+- **Bank Saint Petersburg — DevOps Engineer, 2024—present.** Operations for internet-banking infrastructure: more than 100 microservices in Docker Swarm, Kubernetes and Helm, GitLab CI/CD, planned and emergency deployments. Monitoring critical integrations and business metrics, L3 incident analysis and participation in 24/7 recovery under a 99.97% SLA.
+- **TIPPO Cloud Service — DevOps / DevSecOps / SRE Engineer, 2024—present, project role.** Operations for more than 500 client resources, 7 virtual and 6 physical servers, and over 75 TB of data. WireGuard/IPsec with BGP/BFD, ZFS RAIDZ, MySQL Galera, GitOps-managed Traefik, Restic/S3 backups and recovery tests.
+- **StormWall — Lead Engineer, 2021—2024.** L3–L7 traffic protection, WAF, GRE/IPIP, packet-capture analysis and Splunk/R-Vision security events. Diagnostic automation with Ansible, Bash and Python.
+- **ElGracia — Linux infrastructure, 2014—2019.** A platform serving about 1,000 concurrent users: Linux, MySQL/InnoDB, MariaDB Galera, centralised logging, core-dump analysis and fault isolation across infrastructure and a C++ server core.
 
-## Go & PHP Engineering Experience
+## Main Responsibilities
 
-### Go (backend, workers, Telegram integration)
+- operating Linux, Kubernetes, Helm, Docker Swarm, Nginx and Traefik;
+- CI/CD and GitOps: configuration checks, builds, migrations, controlled rollout and rollback;
+- observability with Zabbix, Grafana, Prometheus, ELK/Kibana and Splunk;
+- incident analysis using metrics, logs, packet captures, request timing and SQL plans;
+- network resilience with WireGuard, IPsec/XFRM, BGP, BFD, FRR and CoreDNS;
+- storage and databases: ZFS, software RAID, MySQL/MariaDB, PostgreSQL/TimescaleDB and Oracle DB;
+- DevSecOps controls: WAF, segmentation, secrets handling, image and configuration scanning, CrowdSec, Trivy and OpenVAS;
+- runbooks, backup recovery tests and controlled failover exercises.
 
-Production-oriented Go development in a multi-service Telegram product:
-- service split into `bot-api`, `app-core`, `worker-scheduler`, `worker-notify`, `worker-export`;
-- internal API boundaries with service-token protection;
-- idempotency patterns (duplicate update protection via `processed_updates`, conflict-safe inserts);
-- reliable cross-system operations with transactional outbox/saga workflows, retries, and reconciliation;
-- async export pipeline (`csv/json/ics`) with S3 upload and expiring download links;
-- analytics and referral flows integrated into domain logic.
+## Selected Projects and Engineering Work
 
-Project reference: private Go Telegram bot repository (Go 1.22, Chi, pgx, AWS SDK v2).
+### [Astrosferum](https://github.com/Haeniken/bot_astrosferum)
 
-Recent public/private Go projects:
-- **[vk_chat_digest_bot](https://github.com/Haeniken/vk_chat_digest_bot)**: VK bot on Go with PostgreSQL and LLM-based chat summaries, per-chat state, batch-triggered digests, and production-minded long-poll processing.
-- **bot-vpn** (private): Telegram VPN sales bot on Go with PostgreSQL, 3x-ui and YooMoney integrations, worker-based lifecycle handling, admin flows, and production operations focus.
+[Project website](https://astrosferum.com) · [ORCID 0009-0005-5804-5011](https://orcid.org/0009-0005-5804-5011)
 
-### PHP (platform tooling and API services)
+Astrosferum is a forecasting system for astronomical observations that I designed and developed. It downloads ICON-EU and ICON Global GRIB2 data, checks model-cycle completeness, extracts atmospheric fields and calculates cloud, wind, stability, transparency and astronomy-specific diagnostics. Every result retains its source model cycle; Telegram, VK and web charts are rendered from stored calculations.
 
-Practical PHP backend work across operational products:
-- **[GitOps Traefik Panel](https://github.com/Haeniken/gitops-traefik-panel)**: layered architecture (`Action` + `Service` + `DTO`), DNS/WHOIS validation, GitHub PR automation, deploy-status polling, CSRF/rate-limit/remember-token security controls;
-- **Internal Static Asset Storage API** (private project): upload/copy/delete API for static files, request-id correlation, path normalization/validation, hardlink dedup by MD5, MySQL-backed metadata, Dockerized runtime with hardening.
+The ordinary forecast processes a reduced vertical profile. Horizon mode separately compares eight directions at a geometric altitude of 10°. Ephemerides are calculated for each forecast term, and the resulting charts keep model estimates distinct from observations.
 
-## Selected Architecture Decisions
+#### Astrodome
 
-- Telegram-first product design to minimize user friction and support cost;
-- thin transport layer + separate core domain service;
-- asynchronous workers for long operations and predictable bot latency;
-- idempotent state transitions and conflict-safe DB writes;
-- infrastructure-as-code mindset for config changes (PR-driven GitOps).
+I am now developing a directional forecast for the whole sky from 10° to zenith: 129 directions for each of 72 native hourly terms, or 9,288 node-hours in one dataset. It loads all 74 ICON-EU full levels, 75 geometric half levels and 19 surface fields.
 
-## Skills Matrix
+Source meteorological variables are reconstructed along a refracted ray before Cₙ², seeing, atmospheric coherence time τ₀, isoplanatic angle θ₀, PWV, air mass, cloud optical depth, fog, transparency and wind shear are calculated. Derived scores are not interpolated between nodes. A failed cell is marked separately and does not discard the remaining directions and forecast terms.
 
-| Domain | Stack | Level |
-|---|---|---|
-| Linux & Networking | Linux, sysctl, iptables, WireGuard, IPsec, BGP/FRR/BFD, CoreDNS | Advanced |
-| Containers & Orchestration | Docker, Docker Swarm, Compose, Traefik, Nginx | Advanced |
-| CI/CD & GitOps | GitLab CI, GitHub Actions, PR-driven workflows | Advanced |
-| Go Development | Go, services/workers, internal APIs | Middle |
-| PHP Development | PHP, platform tooling, API services | Middle |
-| Backend Development | Python, REST APIs | Advanced |
-| Databases | MySQL/MariaDB, PostgreSQL/TimescaleDB, Oracle DB | Middle |
-| Observability | Zabbix, Grafana, Prometheus, ELK/Kibana | Advanced |
-| Security / DevSecOps | CrowdSec, OpenVAS, Trivy, Lynis, rkhunter, hardening | Upper-Intermediate |
+NASA GEOS-CF is an optional source for aerosol AOD components and total column ozone. Temperature, pressure, humidity and wind still come from ICON. If NASA data is stale or incomplete, only the additional spectral estimate is omitted; the main forecast continues to work.
 
-Level order used in this matrix: `Middle -> Upper-Intermediate -> Advanced`.
+The calculation core, job queue, server-side authentication and WebGL2/Canvas interfaces are deployed for controlled verification. Work before the public release covers load measurements, regression checks for the ordinary forecast under the same load and coefficient calibration against public DIMM observatory data.
 
-## Experience Snapshot
+- [Models and calculations in the ordinary forecast](https://haeniken.com/en/articles/astrosferum/)
+- [Astrodome architecture](https://haeniken.com/en/articles/astrodome/)
 
-- ⭐ **Bank Saint Petersburg** — *DevOps Engineer*  
-  Reliability and operational support for distributed internet banking systems and microservices.
-- ⭐ **TIPPO Cloud Service** — *DevOps / DevSecOps / SRE Engineer*  
-  Single infrastructure owner for SaaS workloads (500+ client resources; hybrid VDS + bare metal).
-- ⭐ **StormWall** — *Lead Engineer*  
-  Cybersecurity-focused infrastructure operations, including WAF engineering and L3-L7 (OSI) traffic filtering/tuning, plus troubleshooting and automation.
-- ⭐ **ElGracia** — *Linux System Administrator / Project Curator*  
-  Owned infrastructure and stability for a high-load TrinityCore project: team coordination, C++ core patching, MySQL/InnoDB + Galera tuning, and production security/observability improvements (ModSecurity, SEnginx, Grafana, Graylog).
+### Seven-node resilient network
 
-## Recent Hands-on Themes
+I deployed a full-mesh network with stable service addresses for a small production environment. WireGuard carries the primary path, pre-established IPsec/XFRM provides the backup, and FRR selects routes through BGP and BFD. Inbound and outbound prefix lists permit only the expected address for each node.
 
-- built CI/CD pipelines in GitLab CI and GitHub Actions covering linting, tests, Docker/Compose/YAML validation, Trivy scanning, image builds, database migrations, controlled production rollout, and rollback;
-- designed and rolled out a seven-node encrypted mesh with stable internal addressing, CoreDNS, WireGuard as the primary transport, and automatic IPsec failover through BGP/FRR/BFD; documented node lifecycle, recovery, and troubleshooting procedures;
-- improved a production Go VPN bot's consistency across PostgreSQL, payment flows, and 3x-ui by introducing transactional outbox/saga processing, idempotent workers, retries, reconciliation, and operational alerts;
-- tuned a production Zabbix + PostgreSQL/TimescaleDB stack and investigated storage latency across ZFS, software RAID, and physical disks using workload metrics and extended SMART diagnostics;
-- performed safe production service and data migrations with staged rsync cutovers, traffic verification, resource limits, and host/container log rotation;
-- production security audit of a Go Telegram VPN bot: secrets exposure, fail-open webhook auth, idempotency gaps, DoS-related timeout/body-limit issues, and runtime hardening;
-- production rollout of a Go VK bot: Docker Compose + PostgreSQL, VK long poll, LLM integration, per-chat batching, advisory-lock based publish flow, and retry/rate-limit handling;
-- safe public release prep for an active service: secret scrub, `.env`/logs/data exclusion, config cleanup, and isolated GitHub repo bootstrap from a server-side copy;
-- GitOps delivery design for Traefik-based infrastructure: PR validation, auto-merge, and deploy wrappers.
+I wrote the configuration generator and the operational runbook. They cover adding a node without renumbering existing XFRM interfaces, certificate issuance and staged renewal, removal of a compromised node, diagnosis and rollback. I periodically test failover in the live environment by limiting the fault to one peer pair, waiting for the IPsec route, checking ICMP and an application request, and then confirming return to WireGuard. Zabbix records the selected transport, BGP/BFD state, WireGuard handshake freshness and IPsec SAs without emitting mirrored alerts from every peer.
+
+[Network design, failover test and runbook](https://haeniken.com/en/articles/network-ha/)
+
+### GitOps for Traefik
+
+In [GitOps Traefik Panel](https://github.com/Haeniken/gitops-traefik-panel), an operator adds a domain through a checked procedure. The panel normalises Unicode/Punycode, validates A/AAAA and WHOIS data, checks duplicates, opens a GitHub pull request and reports checks, deployment and TLS issuance. The infrastructure change remains in Git and follows the same path as a manually prepared pull request.
+
+### Reconciling PostgreSQL with external systems
+
+In a private control panel, I separated payment recording from applying desired state across several external nodes. PostgreSQL stores balances, the operation ledger, jobs, leases and generations; network calls run after the database transaction has committed. A repeated notification cannot credit the balance twice, while an unavailable node is retried and later reconciled against recorded state. Incoming notifications use HMAC verification, opaque labels and a separate audit log.
+
+[Engineering note on the internal control panel](https://haeniken.com/en/articles/rabbithole-vpn/)
+
+### Observability and architecture decisions
+
+- **Zabbix and PostgreSQL/TimescaleDB performance.** I traced latency across physical disks, ZFS, system RAID, PostgreSQL and container limits. Logically separate workloads shared the same HDDs: `iowait` reached 86–90% and one disk showed 300–440 ms latency. For the current environment I reduced background collection and tuned PostgreSQL and web resources; the long-term fix was defined as dedicated SSD/NVMe storage for PostgreSQL and WAL rather than more tuning on the shared HDD set.
+- **Checking whether Docker Swarm was the right next step.** After reconciling seven active nodes, I did not move the whole environment into a stretched cluster. Most services depended on local ZFS pools, bind mounts, databases and separate RabbitMQ queues, while a common private network did not yet exist. I limited the future candidate to the compute service, with local state removal, one queue and multi-replica idempotency as prerequisites.
+
+## Tools
+
+| Area | Tools and systems |
+|---|---|
+| Linux and networking | Linux, systemd, sysctl, iptables, WireGuard, StrongSwan/IPsec, XFRM, FRR, BGP, BFD, CoreDNS |
+| Containers | Kubernetes, Helm, Docker, Docker Swarm, Compose, Traefik, Nginx |
+| Automation | Ansible, GitLab CI, GitHub Actions, GitOps, Bash, Python, Go, PHP |
+| Observability | Zabbix, Grafana, Prometheus, ELK/Kibana, Splunk, R-Vision |
+| Data | MySQL/MariaDB Galera, PostgreSQL/TimescaleDB, Oracle DB, ZFS, Restic, S3 |
+| DevSecOps | WAF, CrowdSec, Trivy, OpenVAS, Lynis, rkhunter, secrets handling and configuration checks |
+| Scientific computation | ICON-EU, ICON Global, GRIB2, GEOS-CF, numerical integration, WebGL2/Canvas |
+
+## Certificates
+
+- [IBM Cybersecurity Analyst Professional Certificate](https://www.coursera.org/account/accomplishments/specialization/certificate/CTF3ZA9TULXG)
+- [Security Analyst Fundamentals](https://www.coursera.org/account/accomplishments/specialization/certificate/VFFHAW9QMFZR)
+- [IT Fundamentals for Cybersecurity](https://www.coursera.org/account/accomplishments/specialization/certificate/PCRSJGSVCAEH)
+- [Cyber Threat Intelligence](https://www.coursera.org/account/accomplishments/certificate/4X9JPCHUZW3P)
+- [Network Security & Database Vulnerabilities](https://www.coursera.org/account/accomplishments/certificate/RYBRER3QAF3S)
+- [Penetration Testing, Incident Response and Forensics](https://www.coursera.org/account/accomplishments/certificate/8P7UYE98Q8PT)
 
 ---
 
-<p align="center"><i>Open to DevOps / DevSecOps / SRE Engineer roles where reliability, security, and engineering discipline are first-class priorities.</i></p>
+<p align="center"><i>Open to DevOps / DevSecOps / SRE roles.</i></p>
