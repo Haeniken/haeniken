@@ -76,6 +76,14 @@ I also reviewed the boundary between PostgreSQL and 3x-ui. Provisioning and rene
 
 [Engineering note on the internal control panel](https://haeniken.com/en/articles/rabbithole-vpn/)
 
+### Multi-stream TURN transport for WireGuard
+
+I developed a [server proxy](https://github.com/Haeniken/rabbithole-turn-proxy) and an [Android client](https://github.com/Haeniken/rabbithole-turn-android) that aggregate several TURN/DTLS streams into one logical UDP session. The server keeps one socket to the WireGuard backend, so the endpoint does not roam between lanes. Downlink striping is enabled only for clients advertising bounded reordering; third-party Android and iPhone clients continue to work without a mandatory protocol update.
+
+The client manages its pool by queue depth, latency and loss, prefers TURN over UDP with TCP fallback, and changes physical networks through make-before-break handover. A new stream generation is ready before the old one closes. The server adds echo probes and graceful draining of established sessions during updates.
+
+[Transport, compatibility and live-instance migration](https://haeniken.com/en/articles/turn-transport/)
+
 ### Architecture review across seven nodes
 
 Before selecting a common orchestration layer, I reconciled the live configuration of seven hosts. The environment consisted of separate Docker Compose installations: state was tied to local ZFS pools and directories, RabbitMQ queues were split across nodes, and parts of observability and backup depended on one server. Versions, image build practices and network rules also differed.
