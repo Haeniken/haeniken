@@ -18,7 +18,7 @@ I write tools for diagnostics, configuration generation, state reconciliation, s
 ## Experience
 
 - **Bank Saint Petersburg — DevOps Engineer, 2024—present.** Operations for internet-banking infrastructure: more than 100 microservices in Docker Swarm, Kubernetes and Helm, GitLab CI/CD, planned and emergency deployments. Monitoring critical integrations and business metrics, L3 incident analysis and participation in 24/7 recovery under a 99.97% SLA. I am currently working on introducing AI to analyze application logs and investigate service errors.
-- **TIPPO Cloud Service — DevOps / DevSecOps / SRE Engineer, 2024—present, project role.** Operations for more than 500 client resources, 7 virtual and 6 physical servers, and over 75 TB of data. WireGuard/IPsec with BGP/BFD, ZFS RAIDZ, MySQL Galera, GitOps-managed Traefik, Restic/S3 backups and recovery tests.
+- **TIPPO Cloud Service — SRE Engineer, 2024—present, project role.** Operations for more than 500 client resources, 7 virtual and 6 physical servers, and over 75 TB of data. WireGuard/IPsec with BGP/BFD, ZFS RAIDZ, MySQL Galera, GitOps-managed Traefik, Restic/S3 backups and recovery tests.
 - **StormWall — Lead Engineer, 2021—2024.** L3–L7 traffic protection, WAF, GRE/IPIP, packet-capture analysis and Splunk/R-Vision security events. Diagnostic automation with Ansible, Bash and Python.
 - **ElGracia — Linux infrastructure, 2014—2019.** A platform serving about 1,000 concurrent users: Linux, MySQL/InnoDB, MariaDB Galera, centralised logging, core-dump analysis and fault isolation across infrastructure and a C++ server core.
 
