@@ -24,6 +24,7 @@ My focus is measurable impact: uptime, incident reduction, delivery speed, and i
 | SaaS infrastructure ownership | Supported **500+ client resources** |
 | Performance optimization | Reduced CPU/IO load by **~30%** |
 | Incident quality | Reduced recurring client-facing errors by **up to 7.2x** |
+| Detecting hidden failures | Control tasks detect upload failures while containers pass health checks |
 | Cost efficiency | Reduced infrastructure/storage costs by **~20%** |
 | Operational readiness | Maintained **24/7 incident response** |
 
