@@ -11,13 +11,13 @@
 
 ## Profile
 
-I have worked with Linux infrastructure for more than 11 years. My work covers distributed-service operations, releases, observability, networking, storage, incident analysis and security controls.
+I have worked with Linux infrastructure for more than 11 years: distributed-service operations, releases, observability, networking, storage, incident analysis and security controls.
 
-I write code when an existing tool does not cover the task: diagnostics, configuration generation, state reconciliation, safe retries and scientific-data processing. I treat this code as part of DevOps/SRE work rather than as a separate backend specialisation.
+I write tools for diagnostics, configuration generation, state reconciliation, safe retries and scientific-data processing.
 
 ## Experience
 
-- **Bank Saint Petersburg — DevOps Engineer, 2024—present.** Operations for internet-banking infrastructure: more than 100 microservices in Docker Swarm, Kubernetes and Helm, GitLab CI/CD, planned and emergency deployments. Monitoring critical integrations and business metrics, L3 incident analysis and participation in 24/7 recovery under a 99.97% SLA.
+- **Bank Saint Petersburg — DevOps Engineer, 2024—present.** Operations for internet-banking infrastructure: more than 100 microservices in Docker Swarm, Kubernetes and Helm, GitLab CI/CD, planned and emergency deployments. Monitoring critical integrations and business metrics, L3 incident analysis and participation in 24/7 recovery under a 99.97% SLA. I am currently working on introducing AI to analyze application logs and investigate service errors.
 - **TIPPO Cloud Service — DevOps / DevSecOps / SRE Engineer, 2024—present, project role.** Operations for more than 500 client resources, 7 virtual and 6 physical servers, and over 75 TB of data. WireGuard/IPsec with BGP/BFD, ZFS RAIDZ, MySQL Galera, GitOps-managed Traefik, Restic/S3 backups and recovery tests.
 - **StormWall — Lead Engineer, 2021—2024.** L3–L7 traffic protection, WAF, GRE/IPIP, packet-capture analysis and Splunk/R-Vision security events. Diagnostic automation with Ansible, Bash and Python.
 - **ElGracia — Linux infrastructure, 2014—2019.** A platform serving about 1,000 concurrent users: Linux, MySQL/InnoDB, MariaDB Galera, centralised logging, core-dump analysis and fault isolation across infrastructure and a C++ server core.
@@ -39,62 +39,51 @@ I write code when an existing tool does not cover the task: diagnostics, configu
 
 [Project website](https://astrosferum.com) · [ORCID 0009-0005-5804-5011](https://orcid.org/0009-0005-5804-5011)
 
-Astrosferum is a forecasting system for astronomical observations that I designed and developed. It downloads ICON-EU and ICON Global GRIB2 data, checks model-cycle completeness, extracts atmospheric fields and calculates cloud, wind, stability, transparency and astronomy-specific diagnostics. Every result retains its source model cycle; Telegram, VK and web charts are rendered from stored calculations.
+I developed an astronomy forecast system using ICON-EU and ICON Global: input completeness checks, atmospheric calculations and charts for Telegram, VK and the web. Results retain their source model cycle.
 
-The ordinary forecast processes a reduced vertical profile. Horizon mode separately compares eight directions at a geometric altitude of 10°. Ephemerides are calculated for each forecast term, and the resulting charts keep model estimates distinct from observations.
+Astrodome extends the forecast to 129 directions over 72 hours. The calculation core, queue and interface are deployed; load testing and comparison with observations remain before public release. Loss of optional NASA GEOS-CF data does not stop the main forecast.
 
-#### Astrodome
-
-I am now developing a directional forecast for the whole sky from 10° to zenith: 129 directions for each of 72 native hourly terms, or 9,288 node-hours in one dataset. It loads all 74 ICON-EU full levels, 75 geometric half levels and 19 surface fields.
-
-Source meteorological variables are reconstructed along a refracted ray before Cₙ², seeing, atmospheric coherence time τ₀, isoplanatic angle θ₀, PWV, air mass, cloud optical depth, fog, transparency and wind shear are calculated. Derived scores are not interpolated between nodes. A failed cell is marked separately and does not discard the remaining directions and forecast terms.
-
-NASA GEOS-CF is an optional source for aerosol AOD components and total column ozone. Temperature, pressure, humidity and wind still come from ICON. If NASA data is stale or incomplete, only the additional spectral estimate is omitted; the main forecast continues to work.
-
-The calculation core, job queue, server-side authentication and WebGL2/Canvas interfaces are deployed for controlled verification. Work before the public release covers load measurements, regression checks for the ordinary forecast under the same load and coefficient calibration against public DIMM observatory data.
-
-- [Models and calculations in the ordinary forecast](https://haeniken.com/en/articles/astrosferum/)
-- [Astrodome architecture](https://haeniken.com/en/articles/astrodome/)
+[Calculations](https://haeniken.com/en/articles/astrosferum/) · [Astrodome architecture](https://haeniken.com/en/articles/astrodome/)
 
 ### Seven-node resilient network
 
-I deployed a full-mesh network with stable service addresses for a small production environment. WireGuard carries the primary path, pre-established IPsec/XFRM provides the backup, and FRR selects routes through BGP and BFD. Inbound and outbound prefix lists permit only the expected address for each node.
+I deployed a full-mesh network: WireGuard as the primary transport, IPsec/XFRM as backup, and FRR with BGP/BFD for route selection. I wrote the configuration generator and operational runbook, and test failover with application requests. Zabbix records the selected transport and link state.
 
-I wrote the configuration generator and the operational runbook. They cover adding a node without renumbering existing XFRM interfaces, certificate issuance and staged renewal, removal of a compromised node, diagnosis and rollback. I periodically test failover in the live environment by limiting the fault to one peer pair, waiting for the IPsec route, checking ICMP and an application request, and then confirming return to WireGuard. Zabbix records the selected transport, BGP/BFD state, WireGuard handshake freshness and IPsec SAs without emitting mirrored alerts from every peer.
+HTTPS requests fail over between the public path, mesh and an SSH tunnel. Return requires 180 seconds of continuous availability; Zabbix distinguishes backup operation from a complete outage.
 
-[Network design, failover test and runbook](https://haeniken.com/en/articles/network-ha/)
+[Design and verification](https://haeniken.com/en/articles/network-ha/)
+
+### Conversion service monitoring
+
+I configured Zabbix for a Go service: API, RabbitMQ, workers, queues and external dependencies. A control task checks conversion, previews and storage operations; it detected upload failures while containers passed health checks. HTTP error rates use consistent counter snapshots; trigger dependencies suppress cascading alerts.
+
+### File storage maintenance in Go
+
+I developed tools to restore file records in MySQL and deduplicate through hard links while the application stays running. Streaming reads and external sorting bound memory use; files are checked before atomic replacement, with a recovery journal. In production, I exported and sorted 96.26 million database rows, then started deduplication.
 
 ### GitOps for Traefik
 
-In [GitOps Traefik Panel](https://github.com/Haeniken/gitops-traefik-panel), an operator adds a domain through a checked procedure. The panel normalises Unicode/Punycode, validates A/AAAA and WHOIS data, checks duplicates, opens a GitHub pull request and reports checks, deployment and TLS issuance. The infrastructure change remains in Git and follows the same path as a manually prepared pull request.
+I developed a [domain management panel](https://github.com/Haeniken/gitops-traefik-panel): domain validation, GitHub pull requests, configuration checks, deployment and TLS issuance. Infrastructure changes remain in Git.
 
 ### Reconciling PostgreSQL with external systems
 
-In a private control panel, I separated payment recording from applying desired state across several external nodes. PostgreSQL stores balances, the operation ledger, jobs, leases and generations; network calls run after the database transaction has committed. A repeated notification cannot credit the balance twice, while an unavailable node is retried and later reconciled against recorded state. Incoming notifications use HMAC verification, opaque labels and a separate audit log.
+In a private control panel, I moved network operations out of PostgreSQL transactions into safely retried jobs. Duplicate payment notifications cannot credit a balance twice; background reconciliation restores recorded state on external nodes. HMAC-SHA256 verification, duplicate delivery and conflict handling are covered by tests.
 
-I also reviewed the boundary between PostgreSQL and 3x-ui. Provisioning and renewal now run outside database transactions as jobs with leases, operation generations and safe retries. Background reconciliation restores the recorded state on external nodes, while conflict recovery prevents an operation from remaining stuck indefinitely. Payment notifications are verified with HMAC-SHA256, and duplicate delivery and conflict paths are covered by tests.
-
-[Engineering note on the internal control panel](https://haeniken.com/en/articles/rabbithole-vpn/)
+[Engineering note](https://haeniken.com/en/articles/rabbithole-vpn/)
 
 ### Multi-stream TURN transport for WireGuard
 
-I developed a [server proxy](https://github.com/Haeniken/rabbithole-turn-proxy) and an [Android client](https://github.com/Haeniken/rabbithole-turn-android) that aggregate several TURN/DTLS streams into one logical UDP session. The server keeps one socket to the WireGuard backend, so the endpoint does not roam between lanes. Downlink striping is enabled only for clients advertising bounded reordering; third-party Android and iPhone clients continue to work without a mandatory protocol update.
+I developed a [server proxy](https://github.com/Haeniken/rabbithole-turn-proxy) and an [Android client](https://github.com/Haeniken/rabbithole-turn-android): several TURN/DTLS streams form one UDP session with a stable WireGuard socket. The client accounts for latency and loss, uses TCP fallback and prepares connections before changing networks. Third-party client compatibility is preserved.
 
-The client manages its pool by queue depth, latency and loss, prefers TURN over UDP with TCP fallback, and changes physical networks through make-before-break handover. A new stream generation is ready before the old one closes. The server adds echo probes and graceful draining of established sessions during updates.
-
-[Transport, compatibility and live-instance migration](https://haeniken.com/en/articles/turn-transport/)
+[Transport design](https://haeniken.com/en/articles/turn-transport/)
 
 ### Architecture review across seven nodes
 
-Before selecting a common orchestration layer, I reconciled the live configuration of seven hosts. The environment consisted of separate Docker Compose installations: state was tied to local ZFS pools and directories, RabbitMQ queues were split across nodes, and parts of observability and backup depended on one server. Versions, image build practices and network rules also differed.
-
-The resulting target model uses immutable images built in CI and pulled from a registry, explicit host roles, a separate management network, and state that is either replicated or removed from compute services. It replaces independent brokers with a shared resilient queue and establishes one baseline for health checks, logging, secrets and resource limits.
-
-I did not move the whole environment into a stretched Docker Swarm. Local state and different failure domains would have turned the cluster into a shared source of risk. I kept only the compute service as a candidate, after removing local state, consolidating the queue and verifying multi-replica idempotency.
+I reviewed seven production hosts: local ZFS state, independent RabbitMQ queues, and single points of failure in monitoring and backups. I prepared a plan to standardize builds, host roles, queues and management networking. Shared orchestration remains a later step after removing local-state dependencies.
 
 ### Monitoring performance
 
-- **Zabbix and PostgreSQL/TimescaleDB performance.** I traced latency across physical disks, ZFS, system RAID, PostgreSQL and container limits. Logically separate workloads shared the same HDDs: `iowait` reached 86–90% and one disk showed 300–440 ms latency. For the current environment I reduced background collection and tuned PostgreSQL and web resources; the long-term fix was defined as dedicated SSD/NVMe storage for PostgreSQL and WAL rather than more tuning on the shared HDD set.
+I traced Zabbix and PostgreSQL/TimescaleDB latency to shared HDDs: `iowait` reached 86–90% and disk latency 300–440 ms. I reduced background collection and tuned PostgreSQL and web resources. The long-term solution is dedicated SSD/NVMe storage for the database and WAL.
 
 ## Tools
 
