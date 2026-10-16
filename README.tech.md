@@ -17,8 +17,8 @@ I write tools for diagnostics, configuration generation, state reconciliation, s
 
 ## Experience
 
-- **Bank Saint Petersburg — DevOps Engineer, 2024—present.** Operations for internet-banking infrastructure: more than 100 microservices in Docker Swarm, Kubernetes and Helm, GitLab CI/CD, planned and emergency deployments. Monitoring critical integrations and business metrics, L3 incident analysis and participation in 24/7 recovery under a 99.97% SLA. I am currently working on introducing AI to analyze application logs and investigate service errors.
-- **TIPPO Cloud Service — SRE Engineer, 2024—present, project role.** Operations for more than 500 client resources, 7 virtual and 6 physical servers, and over 75 TB of data. WireGuard/IPsec with BGP/BFD, ZFS RAIDZ, MySQL Galera, GitOps-managed Traefik, Restic/S3 backups and recovery tests.
+- **Bank Saint Petersburg — DevOps Engineer, 2024—present.** Operations for internet-banking infrastructure: more than 100 microservices in Docker Swarm, Kubernetes and Helm, GitLab CI/CD, S3, planned and emergency deployments. Monitoring critical integrations and business metrics, L3 incident analysis and participation in 24/7 recovery under a 99.97% SLA. I am currently working on introducing AI to analyze application logs and investigate service errors.
+- **TIPPO Cloud Service — SRE Engineer / DevSecOps, 2024—present, project role.** Operations for more than 500 client resources, 7 virtual and 6 physical servers, and over 75 TB of data. WireGuard/IPsec with BGP/BFD, ZFS RAIDZ, MySQL Galera, GitOps-managed Traefik, Restic/S3 backups and recovery tests. I build tools and improve services in PHP, Go and Python. I debug applications using logs, packet captures and source code, fix race conditions and queue failure handling, and verify changes with integration tests. Implemented CI/CD with code linting and container image scanning with Trivy. Configured client-facing service availability indicators (SLIs) and SLO tracking in Zabbix.
 - **StormWall — Lead Engineer, 2021—2024.** L3–L7 traffic protection, WAF, GRE/IPIP, packet-capture analysis and Splunk/R-Vision security events. Diagnostic automation with Ansible, Bash and Python.
 - **ElGracia — Linux infrastructure, 2014—2019.** A platform serving about 1,000 concurrent users: Linux, MySQL/InnoDB, MariaDB Galera, centralised logging, core-dump analysis and fault isolation across infrastructure and a C++ server core.
 
@@ -48,8 +48,6 @@ Astrodome extends the forecast to 129 directions over 72 hours. The calculation 
 ### Seven-node resilient network
 
 I deployed a full-mesh network: WireGuard as the primary transport, IPsec/XFRM as backup, and FRR with BGP/BFD for route selection. I wrote the configuration generator and operational runbook, and test failover with application requests. Zabbix records the selected transport and link state.
-
-HTTPS requests fail over between the public path, mesh and an SSH tunnel. Return requires 180 seconds of continuous availability; Zabbix distinguishes backup operation from a complete outage.
 
 [Design and verification](https://haeniken.com/en/articles/network-ha/)
 
